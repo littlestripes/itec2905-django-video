@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+:root {
+    /* solarized light defaults */
+    --main-bg-color: #FDF6E3;
+    --header-fg-color: #DC322F;
+    --body-fg-color: #657B83;
+    --input-bg-color: #EEE8D5;
+    --btn-border-color: #AE201E;
+    --input-placeholder-color: #BBC4C4;
+}
+
+body {
+    background-color: var(--main-bg-color);
+
+    font-family: "Ubuntu", sans-serif;
+    color: var(--body-fg-color);
+}
+
+.navigation {
+    margin: 1em;
+}
+
+.navigation > a {
+    padding-right: 2em;
+}
