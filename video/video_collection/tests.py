@@ -401,3 +401,33 @@ class TestVideoModel(TestCase):
             Video.objects.create(
                 name="example", url="https://www.youtube.com/watch?v=IODxDxX7oi4"
             )
+
+
+class TestVideoDetail(TestCase):
+
+    def test_detail_page_displays_all_data(self):
+        video_data = {
+            "name": "star wars cerveza cristal 1",
+            "url": "https://www.youtube.com/watch?v=5hfRjN3txdM",
+            "notes": "comercial",
+        }
+
+        Video.objects.create(**video_data)
+
+        url = reverse("video_detail", args=[1])
+
+        response = self.client.get(url)
+
+        self.assertTemplateUsed(response, "video_collection/video_detail.html")
+
+        self.assertContains(response, "star wars cerveza cristal 1")
+        self.assertContains(response, "https://youtube.com/embed/5hfRjN3txdM")
+        self.assertContains(response, "comercial")
+
+    def test_detail_for_invalid_video_returns_404(self):
+        # 4 should be an invalid pk, so we should get 404
+        url = reverse("video_detail", args=[4])
+
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, 404)
